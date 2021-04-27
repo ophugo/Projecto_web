@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
+import { makeStyles } from '@material-ui/core/styles';
+
+export const useStyles = makeStyles((theme) => ({
+  project: {
+    border: '1px solid #c7ecec',
+    backgroundColor: '#d0fafa',
+    margin: '50px',
+    padding: '0',
+  },
+  
+  projectTitle: { 
+    margin: '0 0 30px 0',
+    fontSize: '30px',
+  },
+}));
+
+
 
 const Project = ({ project, removeProject }) => {
   const [tasks, setTasks] = useState([]);
@@ -8,6 +25,8 @@ const Project = ({ project, removeProject }) => {
   const addTask = (task) => {
     setTasks([task, ...tasks]);
   };
+
+  const classes = useStyles();
 
   const toggleComplete = (id) => {
     setTasks(
@@ -56,8 +75,8 @@ const Project = ({ project, removeProject }) => {
   };
 
   return (
-    <div className="Project">
-      <strong className="Project-Title">{project.title}</strong>
+    <div className={classes.project}>
+      <strong className={classes.projectTitle}>{project.title}</strong>
       <TaskForm addTask={addTask} />
       <TaskList
         tasks={tasks}
