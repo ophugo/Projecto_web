@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input'
+import Input from '@material-ui/core/Input';
 
 export const useStyles = makeStyles((theme) => ({
   form: {
