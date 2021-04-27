@@ -4,6 +4,7 @@ import { Grid, Button } from "@material-ui/core";
 import ApiService from "../../APIService";
 import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -282,7 +283,7 @@ const MainInfo = () => {
                     variant="contained"
                     type="submit"
                   >
-                    Login
+                    <Link to="/">Login</Link>
                   </Button>
                   <Button
                     className={classes.loginbtn}

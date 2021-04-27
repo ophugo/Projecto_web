@@ -1,13 +1,13 @@
-import React from 'react';
-import ProjectForm from './ProjectForm';
-import ProjectList from './ProjectList';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from "react";
+import ProjectForm from "./ProjectForm";
+import ProjectList from "./ProjectList";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
   home: {
-    display: 'flex',
-    flexFlow: 'column wrap',
+    display: "flex",
+    flexFlow: "column wrap",
   },
 }));
 
