@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
 import ApiService from "../APIService";
+import APIService from "../APIService";
 
 export const useStyles = makeStyles((theme) => ({
   home: {
@@ -32,19 +33,15 @@ const Home = () => {
     setProjects(projects.filter((p) => p.id !== id));
   }
 
-  // const getUserID = () => {
-  //   ApiService.getID(token["mytoken"])
-  //     .then((resp) => resp.json)
-  //     .then((resp) => setID(resp))
-  //     .then(getAllProjects(ID));
-  // };
-
   const getAllProjects = (id) => {
-    ApiService.getProjects(id).then((resp) => setProjects(resp));
+    ApiService.getProjects(id).then((resp) => {
+      setProjects(resp);
+      console.log(resp);
+    });
   };
 
-  const getAllSub = (id) => {
-    ApiService.getSubProjects(id).then((resp) => setSubProjects(resp));
+  const deleteTareas = (id) => {
+    APIService.deleteSubProjects(id);
   };
 
   useEffect(() => {
@@ -78,12 +75,22 @@ const Home = () => {
   return (
     <div>
       <div className={classes.home}>
+        <button onClick={() => removeToken(["mytoken"])}>Logout</button>
         {projects.map((project) => {
           return (
             <div>
               <h1>{project.title}</h1>
-              <h2>{project.id}</h2>
-              <div></div>
+              {project.notes.map((tareas) => {
+                return (
+                  <div>
+                    <h3>{tareas.title}</h3>
+                    <h4>{tareas.date}</h4>
+                    <button onClick={() => deleteTareas(tareas.id)}>
+                      Eliminar
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           );
         })}
