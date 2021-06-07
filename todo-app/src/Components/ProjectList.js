@@ -1,5 +1,5 @@
-import React from 'react';
-import Project from './Project';
+import React from "react";
+import Project from "./Project";
 
 const ProjectList = ({ projects, removeProject }) => {
   return (
