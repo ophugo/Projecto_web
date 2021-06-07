@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
-import Home from "./Components/Home";
-import Login from "./Components/Login";
+import Home from "./components/Home";
+import Login from "./components/Login";
 import "./App.css";
+import { Grid } from "@material-ui/core";
 
 const App = () => {
   return (
-    <div className="app">
+    <Grid item xs={12} container className="app">
       <CookiesProvider>
         <Router>
           <Switch>
@@ -15,7 +16,7 @@ const App = () => {
           </Switch>
         </Router>
       </CookiesProvider>
-    </div>
+    </Grid>
   );
 };
 

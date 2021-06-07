@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import { TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  inputForm: {
-    margin: '0 1px',
+  form: {
+    width: '400px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
+  input: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '100%',
+  },
+  outline: {
+    '&::before': {
+      borderColor: `${theme.palette.primary.main} !important`,
+    },
+    color:`${theme.palette.text.secondary} !important`,
+  },
+  submitBtn: {
+    height: '100%'
+  }
 }));
 
 const ProjectForm = ({ addProject }) => {
@@ -33,19 +51,29 @@ const ProjectForm = ({ addProject }) => {
   const classes = useStyles();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Input
-        className={classes.inputForm}
-        placeholder="Title"
+    <form onSubmit={handleSubmit} className={classes.form}>
+      <TextField
+        id="project-name"
+        className={classes.input}
+        label="Title"
         value={project.title}
         onChange={handleProjectTitleChange}
-        inputProps={{ 'aria-label': 'description' }}
+        autoComplete='off'
+        autoCorrect="off"
+        autoCapitalize="on"
+        spellCheck="false"
+        InputLabelProps={{ required: false }}
+        InputProps={{
+          classes: {
+            root: classes.outline,
+          },
+        }}
+        inputProps={{ 'aria-label': 'Title', maxLength: 41  }}
         required
+        autoFocus
       />
 
-      <Button variant="outlined" color="primary" type="submit">
-        Add
-      </Button>
+      <Button variant="outlined" color="primary" className={classes.submitBtn} type="submit">Add</Button>
     </form>
   );
 };

@@ -1,13 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import MainInfo from "./Components/PageSeccions/LoginForm";
+import MainInfo from "./components/PageSeccions/LoginForm";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#0e5f92'
+    },
+    secondary: {
+      main: '#00eeff'
+    }
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MuiThemeProvider theme={theme}>
+      <App />
+    </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

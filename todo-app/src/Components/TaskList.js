@@ -6,6 +6,8 @@ export const useStyles = makeStyles((theme) => ({
   list: {
     display: 'flex',
     flexFlow: 'row wrap',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
 }));
 
