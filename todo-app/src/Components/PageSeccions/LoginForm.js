@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh",
+    height: "100%",
     width: "100%",
     alignContent: "center",
     overflow: "hidden",
@@ -101,8 +101,7 @@ const MainInfo = () => {
     } else {
       setError({
         bool: true,
-        type:
-          "No se encontro usuario o la combinacion de usuario y contraseña no es la correcta",
+        type: "No se encontro usuario o la combinacion de usuario y contraseña no es la correcta",
       });
 
       setToken("mytoken", "");
@@ -283,7 +282,7 @@ const MainInfo = () => {
                     variant="contained"
                     type="submit"
                   >
-                    <Link to="/">Login</Link>
+                    Login
                   </Button>
                   <Button
                     className={classes.loginbtn}
