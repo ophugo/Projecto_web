@@ -30,7 +30,6 @@ export const useStyles = makeStyles((theme) => ({
 
 const TaskForm = ({ setShown, addTask }) => {
   const [task, setTask] = useState({
-    id: '',
     title: '',
     date: '',
     completed: false,
@@ -48,8 +47,9 @@ const TaskForm = ({ setShown, addTask }) => {
     e.preventDefault();
 
     if (task.title.trim()) {
-      addTask({ ...task, id: uuidv4() });
+      addTask(task);
       setTask({ ...task, title: '', date: '' });
+      // APIService.registerSubProjec({id});
       setShown(true);
     }
   };
@@ -77,8 +77,8 @@ const TaskForm = ({ setShown, addTask }) => {
           classes: {
             root: classes.outline,
           }, 
-          maxLength: 41
         }}
+        inputProps={{ maxLength: 80 }}
         onKeyDown={(e) => {
           if(e.keyCode === 13 && !e.shiftKey) {
             e.preventDefault();
@@ -91,7 +91,7 @@ const TaskForm = ({ setShown, addTask }) => {
       <TextField
         id="new-task-date"
         label="Completion date"
-        type="datetime-local"
+        type="date"
         className={classes.dateField}
         value={task.date}
         onChange={handTaskDateChange}

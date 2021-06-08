@@ -6,11 +6,17 @@ import { TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    width: '400px',
+    width: '65%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'center',
+    [theme.breakpoints.down("sm")]: {
+      width: '80%',
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: '100%',
+    },
   },
   input: {
     marginLeft: theme.spacing(1),

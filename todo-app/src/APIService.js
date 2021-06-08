@@ -20,7 +20,7 @@ class APIService {
   }
 
   static getID(token) {
-    return fetch(`http://127.0.0.1:8000/getid/${token}`, {
+    return fetch(`http://127.0.0.1:8000/getid/${token}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ class APIService {
   }
 
   static getProjects(id) {
-    return fetch(`http://127.0.0.1:8000/projects/${id}`, {
+    return fetch(`http://127.0.0.1:8000/projects/${id}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ class APIService {
   }
 
   static getSubProjects(id) {
-    return fetch(`http://127.0.0.1:8000/subprojects/${id}`, {
+    return fetch(`http://127.0.0.1:8000/subprojects/${id}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ class APIService {
   }
 
   static updateProject(body, id) {
-    return fetch(`http://127.0.0.1:8000/oneproject/${id}`, {
+    return fetch(`http://127.0.0.1:8000/oneproject/${id}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ class APIService {
   }
 
   static updateSubProject(body, id) {
-    return fetch(`http://127.0.0.1:8000/subprojects/${id}`, {
+    return fetch(`http://127.0.0.1:8000/subprojects/${id}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ class APIService {
   }
 
   static deleteProjects(id) {
-    return fetch(`http://127.0.0.1:8000/projects/${id}`, {
+    return fetch(`http://127.0.0.1:8000/projects/${id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -99,7 +99,7 @@ class APIService {
   }
 
   static deleteSubProjects(id) {
-    return fetch(`http://127.0.0.1:8000/subprojects/${id}`, {
+    return fetch(`http://127.0.0.1:8000/subprojects/${id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

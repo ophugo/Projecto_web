@@ -16,10 +16,10 @@ const TaskList = ({ tasks, toggleComplete, removeTask, editTaskTitle, editTaskDa
 
   return (
     <div className={classes.list}>
-      {tasks.map((t) => (
+      {tasks.map((task) => (
         <Task
-          key={t.id}
-          task={t}
+          key={task.id}
+          task={task}
           toggleComplete={toggleComplete}
           removeTask={removeTask}
           editTaskTitle={editTaskTitle}

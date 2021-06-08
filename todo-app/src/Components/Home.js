@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
     padding: 30,
     flexFlow: 'column wrap',
     background: 'white',
-    width: '100%',
+    width: '700px',
     minHeight: '80vh',
     background: 'linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))',
     margin: '10vh',
@@ -41,7 +41,9 @@ const Home = () => {
   let history = useHistory();
 
   function addProject(project) {
-    setProjects([project, ...projects]);
+    APIService.registerProject({title: project.title, user:ID}).then((resp) => {
+      setProjects([...projects, resp]);
+    });
   }
 
   function removeProject(id) {
@@ -53,6 +55,7 @@ const Home = () => {
       setProjects(resp);
       console.log(resp);
     });
+    setID(id);
   };
 
   const deleteTareas = (id) => {
@@ -88,21 +91,23 @@ const Home = () => {
   const classes = useStyles();
 
   return (
-    <Grid item xs={12} container alignItems="center" className={classes.home}>
-      <Box fontSize={50} color="text.secondary" fontWeight={200} style={{marginBottom: 30}}>
-      Projects
-      </Box>
-      <ProjectForm addProject={addProject} />
-      <ProjectList projects={projects} removeProject={removeProject} />
-  </Grid>
+
     // <div>
+      <Grid item xs={12} container alignItems="center" className={classes.home}>
+        <Box fontSize={50} color="text.secondary" fontWeight={200} style={{marginBottom: 30}}>
+          Projects
+        </Box>
+        <ProjectForm addProject={addProject} />
+        <ProjectList projects={projects} removeProject={removeProject} />
+      </Grid>
+
     //   <div className={classes.home}>
     //     <button onClick={() => removeToken(["mytoken"])}>Logout</button>
     //     {projects.map((project) => {
     //       return (
     //         <div>
     //           <h1>{project.title}</h1>
-    //           {project.notes.map((tareas) => {
+    //           {project.notes?.map((tareas) => {
     //             return (
     //               <div>
     //                 <h3>{tareas.title}</h3>

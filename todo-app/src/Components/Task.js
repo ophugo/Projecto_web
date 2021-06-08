@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Fragment } from 'react';
+import APIService from "../APIService";
 
 export const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -17,10 +18,9 @@ export const useStyles = makeStyles((theme) => ({
   checkbox: {
     padding: theme.spacing(1),
     margin: 0,
-    color: '#90ee90',
   },
   checked: {
-    color: 'red'
+    color: 'blue'
   },
   delete: {
     color: '#cc1919',
@@ -29,7 +29,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   task: {
     width: '100%',
-    minWidth: '45%',
+    // minWidth: '45%',
     display: 'flex',
     flexDirection: 'column',
     wordWrap: 'break-word',
@@ -57,21 +57,25 @@ const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate })
   const [isEditing, setEditing] = useState(false);
 
   const handleCheckboxClick = () => {
-    toggleComplete(task.id);
+    toggleComplete(task);
+    
   };
 
   const handleRemoveTask = () => {
     removeTask(task.id);
+    deleteTareas(task.id);
   };
 
   const handleEditTitleTask = (e) => {
-    editTaskTitle(task.id, e.target.value);
-    setEditing(true);
+    editTaskTitle(task, e.target.value);
   };
 
   const handleEditDateTask = (e) => {
-    editTaskDate(task.id, e.target.value);
-    setEditing(true);
+    editTaskDate(task, e.target.value);
+  };
+
+  const deleteTareas = (id) => {
+    APIService.deleteSubProjects(id);
   };
 
   const classes = useStyles();
@@ -79,7 +83,8 @@ const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate })
   return (
     <div
       style={{
-        boxShadow: task.completed && '0px 0px 20px rgb(125, 255, 65)',
+        boxShadow: task.completed && '0px 0px 10px rgb(125, 255, 65)',
+        border: task.completed ? '3px solid #90ee90' : '3px solid rgb(255,255,255)',
       }}
       className={classes.task}
     >
@@ -88,10 +93,8 @@ const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate })
           className={classes.checkbox}
           checked={task.completed}
           onClick={handleCheckboxClick}
-          inputProps={{
-            classes: {
-              root: classes.checked,
-            },
+          style ={{
+            color: task.completed ? '#90ee90' : '#381613',
           }}
         />
         <IconButton 
@@ -111,6 +114,8 @@ const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate })
         type="text"
         label="Task title"
         autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="on"
         multiline
         rowsMax="4"
         defaultValue="Task title"
@@ -118,9 +123,9 @@ const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate })
         InputProps={{
           classes: {
             root: classes.outline,
-          }, 
-          maxLength: 41
+          },
         }}
+        inputProps={{ maxLength: 80 }}
         value={task.title}
         className={classes.textField}
         onChange={handleEditTitleTask}
@@ -133,7 +138,7 @@ const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate })
           <TextField
             id="task-date"
             label="Completion date"
-            type="datetime-local"
+            type="date"
             value={task.date}
             onChange={handleEditDateTask}
             className={classes.dateField}
@@ -143,13 +148,8 @@ const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate })
                 root: classes.outline,
               },
             }}
-            novalidate
+            noValidate
           />
-      }
-      {isEditing && 
-        <Button variant="outlined" color="primary" type="submit" >
-          Update task
-        </Button>
       }
       </form>
       {/* <p className="Task-Date">{task.date}</p> */}
