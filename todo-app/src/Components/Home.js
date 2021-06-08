@@ -12,30 +12,32 @@ import { Fragment } from "react";
 //Estilos (Css) del componente
 export const useStyles = makeStyles((theme) => ({
   home: {
-    display: 'flex',
+    display: "flex",
     padding: 30,
-    flexFlow: 'column wrap',
-    background: 'white',
-    width: '700px',
-    minHeight: '80vh',
-    background: 'linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))',
-    margin: '10vh',
-    marginTop: '5vh',
+    flexFlow: "column wrap",
+    background: "white",
+    width: "700px",
+    minHeight: "80vh",
+    background:
+      "linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))",
+    margin: "10vh",
+    marginTop: "5vh",
     borderRadius: 30,
-    backdropFilter: 'blur(2rem)',
-    boxShadow: '6px 6px 20px rgba(122,122,122,0.212)',
+    backdropFilter: "blur(2rem)",
+    boxShadow: "6px 6px 20px rgba(122,122,122,0.212)",
     [theme.breakpoints.down("sm")]: {
-      width: '60vh',
+      width: "60vh",
     },
     [theme.breakpoints.down("xs")]: {
-      width: '40vh',
+      width: "40vh",
     },
   },
   logout: {
     marginTop: 30,
     borderRadius: 15,
-    background: 'linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))',
-    boxShadow: '6px 6px 30px rgba(122,122,122,0.212)',
+    background:
+      "linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))",
+    boxShadow: "6px 6px 30px rgba(122,122,122,0.212)",
   },
 }));
 
@@ -51,9 +53,11 @@ const Home = () => {
     para la creación del proyecto con el título asignado y el id del usuario
   */
   function addProject(project) {
-    APIService.registerProject({title: project.title, user:ID}).then((resp) => {
-      setProjects([...projects, resp]);
-    });
+    APIService.registerProject({ title: project.title, user: ID }).then(
+      (resp) => {
+        setProjects([...projects, resp]);
+      }
+    );
   }
 
   // Función a cargo de eliminar el proyecto que sea pasado mediante su id
@@ -74,27 +78,26 @@ const Home = () => {
   useEffect(() => {
     if (token["mytoken"] !== "undefined") {
       if (token["mytoken"]) {
-        setLoggedIn(true);
       } else {
-        setLoggedIn(false);
         history.push("/login");
       }
     } else {
-      setLoggedIn(false);
       history.push("/login");
     }
   }, [token]);
 
-
   //Función que se ejecuta al ingresar al menú principal, con el usuario logueado. Con el fin de inizializar y recaudar la información del usuario
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/getid/${token["mytoken"]}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
-    })
+    fetch(
+      `https://salty-lowlands-70665.herokuapp.com/getid/${token["mytoken"]}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+        },
+      }
+    )
       .then((response) => response.json())
       .then((response) => getAllProjects(response.id));
   }, [token]);
@@ -107,9 +110,19 @@ const Home = () => {
   */
   return (
     <Fragment>
-      <Button className={classes.logout} onClick={() => removeToken(["mytoken"])}>Logout</Button>
+      <Button
+        className={classes.logout}
+        onClick={() => removeToken(["mytoken"])}
+      >
+        Logout
+      </Button>
       <Grid item xs={12} container alignItems="center" className={classes.home}>
-        <Box fontSize={50} color="text.secondary" fontWeight={200} style={{marginBottom: 30}}>
+        <Box
+          fontSize={50}
+          color="text.secondary"
+          fontWeight={200}
+          style={{ marginBottom: 30 }}
+        >
           Projects
         </Box>
         <ProjectForm addProject={addProject} />

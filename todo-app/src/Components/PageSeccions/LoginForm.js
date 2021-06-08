@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     fontFamily: "'Montserrat', sans-serif",
     lineHeight: 1.5,
-    
   },
   login: {
     display: "block",
@@ -36,11 +35,12 @@ const useStyles = makeStyles((theme) => ({
     padding: 100,
     backgroundColor: "white",
 
-    background: 'white',
-    background: 'linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))',
+    background: "white",
+    background:
+      "linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))",
     borderRadius: 30,
-    backdropFilter: 'blur(2rem)',
-    boxShadow: '6px 6px 20px rgba(122,122,122,0.212)',
+    backdropFilter: "blur(2rem)",
+    boxShadow: "6px 6px 20px rgba(122,122,122,0.212)",
   },
   grid: {
     display: "block",
@@ -146,7 +146,6 @@ const MainInfo = () => {
     }
   };
 
-
   //Función con web service para la creación del usuario
   const registerBtn = (event) => {
     // perform all neccassary validations
@@ -183,7 +182,6 @@ const MainInfo = () => {
   };
 
   const classes = useStyles();
-
 
   //Estructura del login y signup de la aplicación, contiene un formulario para cada uno
   return (

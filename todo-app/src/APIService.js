@@ -78,7 +78,7 @@ class APIService {
 
   //Web service para la creación de tarea
   static registerSubProject(body) {
-    return fetch("http://127.0.0.1:8000/subprojects/", {
+    return fetch("https://salty-lowlands-70665.herokuapp.com/subprojects/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +89,7 @@ class APIService {
 
   //Web service para la creación de proyecto
   static registerProject(body) {
-    return fetch("http://127.0.0.1:8000/projects/", {
+    return fetch("https://salty-lowlands-70665.herokuapp.com/projects/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ class APIService {
 
   //Web service para la eliminación de proyecto
   static deleteProjects(id) {
-    return fetch(`http://127.0.0.1:8000/projects/${id}/`, {
+    return fetch(`https://salty-lowlands-70665.herokuapp.com/projects/${id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -110,12 +110,15 @@ class APIService {
 
   //Web service para la eliminación de tarea
   static deleteSubProjects(id) {
-    return fetch(`http://127.0.0.1:8000/subprojects/${id}/`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    return fetch(
+      `https://salty-lowlands-70665.herokuapp.com/subprojects/${id}/`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   }
 }
 
