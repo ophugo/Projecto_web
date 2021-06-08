@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import MainInfo from "./components/PageSeccions/LoginForm";
+import MainInfo from "./Components/PageSeccions/LoginForm";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';

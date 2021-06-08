@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
-import Home from "./components/Home";
-import Login from "./components/Login";
+import Home from "./Components/Home";
+import Login from "./Components/Login";
 import "./App.css";
 import { Grid } from "@material-ui/core";
 
