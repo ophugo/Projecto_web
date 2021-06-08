@@ -1,7 +1,7 @@
 class APIService {
   //Web service para el logueo del usuario
   static loginUser(body) {
-    return fetch("http://127.0.0.1:8000/auth/", {
+    return fetch("https://salty-lowlands-70665.herokuapp.com/auth/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
