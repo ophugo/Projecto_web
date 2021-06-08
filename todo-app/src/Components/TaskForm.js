@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
+//Estilos (Css) del componente
 export const useStyles = makeStyles((theme) => ({
   form: {
     display: 'flex',
@@ -29,20 +30,24 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 const TaskForm = ({ setShown, addTask }) => {
+  // Estructura local de la tarea
   const [task, setTask] = useState({
     title: '',
     date: '',
     completed: false,
   });
 
+  // Manejo del cambio al título de la tarea a crear
   const handleTaskTitleChange = (e) => {
     setTask({ ...task, title: e.target.value });
   };
 
+  // Manejo del cambio a la fecha de la tarea a crear
   const handTaskDateChange = (e) => {
     setTask({ ...task, date: e.target.value });
   };
 
+  // Funcón encargada de hacer el submit de la creación de las tareas
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -56,6 +61,11 @@ const TaskForm = ({ setShown, addTask }) => {
 
   const classes = useStyles();
 
+  /*
+    Estructura del componente, el cual contiene un formulario con el textfield del 
+    titulo y un textfield tipo fecha para la fecha de cumplimiento de la tarea,
+    así como el botón que manda a hacer la creación de la tarea
+  */
   return (
     <form className={classes.form} onSubmit={handleSubmit}>
       <TextField

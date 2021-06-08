@@ -9,6 +9,7 @@ import ApiService from "../APIService";
 import APIService from "../APIService";
 import { Fragment } from "react";
 
+//Estilos (Css) del componente
 export const useStyles = makeStyles((theme) => ({
   home: {
     display: 'flex',
@@ -40,24 +41,27 @@ export const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const [projects, setProjects] = useState([]);
-  const [subProjects, setSubProjects] = useState([]);
-  const [projectId, setProjectId] = useState(0);
   const [token, setToken, removeToken] = useCookies(["mytoken"]);
   const [ID, setID] = useState(0);
-  const [loggedIn, setLoggedIn] = useState(false);
 
   let history = useHistory();
 
+  /*
+    Función para la creacion de proyectos, se manda a llamar a la función web service correspondiente
+    para la creación del proyecto con el título asignado y el id del usuario
+  */
   function addProject(project) {
     APIService.registerProject({title: project.title, user:ID}).then((resp) => {
       setProjects([...projects, resp]);
     });
   }
 
+  // Función a cargo de eliminar el proyecto que sea pasado mediante su id
   function removeProject(id) {
     setProjects(projects.filter((p) => p.id !== id));
   }
 
+  //Función que recauda todos los proyectos del usuario, se realiza mediante el web service correspondiente
   const getAllProjects = (id) => {
     ApiService.getProjects(id).then((resp) => {
       setProjects(resp);
@@ -66,6 +70,7 @@ const Home = () => {
     setID(id);
   };
 
+  //Función de control del logueo del usuario
   useEffect(() => {
     if (token["mytoken"] !== "undefined") {
       if (token["mytoken"]) {
@@ -80,6 +85,8 @@ const Home = () => {
     }
   }, [token]);
 
+
+  //Función que se ejecuta al ingresar al menú principal, con el usuario logueado. Con el fin de inizializar y recaudar la información del usuario
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/getid/${token["mytoken"]}`, {
       method: "GET",
@@ -94,6 +101,10 @@ const Home = () => {
 
   const classes = useStyles();
 
+  /*
+    Estructura del componente Home, el cual contiene el boton de logout, el formularia para la creacion de proyectos
+    y la lista de proyectos, si es que han sido creados.  
+  */
   return (
     <Fragment>
       <Button className={classes.logout} onClick={() => removeToken(["mytoken"])}>Logout</Button>
@@ -105,29 +116,6 @@ const Home = () => {
         <ProjectList projects={projects} removeProject={removeProject} />
       </Grid>
     </Fragment>
-
-    //   <div className={classes.home}>
-    //     <button onClick={() => removeToken(["mytoken"])}>Logout</button>
-    //     {projects.map((project) => {
-    //       return (
-    //         <div>
-    //           <h1>{project.title}</h1>
-    //           {project.notes?.map((tareas) => {
-    //             return (
-    //               <div>
-    //                 <h3>{tareas.title}</h3>
-    //                 <h4>{tareas.date}</h4>
-    //                 <button onClick={() => deleteTareas(tareas.id)}>
-    //                   Eliminar
-    //                 </button>
-    //               </div>
-    //             );
-    //           })}
-    //         </div>
-    //       );
-    //     })}
-    //   </div>
-    // </div>
   );
 };
 

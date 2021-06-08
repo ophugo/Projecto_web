@@ -6,6 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+//Template del tema (colores) de todo el proyecto
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -17,6 +18,7 @@ const theme = createMuiTheme({
   }
 });
 
+//Render React
 ReactDOM.render(
   <React.StrictMode>
     <MuiThemeProvider theme={theme}>

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
 
+//Estilos (Css) del componente
 const useStyles = makeStyles((theme) => ({
   form: {
     width: '65%',
@@ -34,28 +35,33 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+  // Estructura local del proyecto
 const ProjectForm = ({ addProject }) => {
   const [project, setProject] = useState({
     id: '',
     title: '',
   });
 
+  // Manejo del cambio al título del proyecto a crear
   const handleProjectTitleChange = (e) => {
     setProject({ ...project, title: e.target.value });
   };
 
+  // Funcón encargada de hacer el submit de la creación de los proyectos, y la limpia de los textfields
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (project.title.trim()) {
       addProject({ ...project, id: uuidv4() });
-
       setProject({ ...project, title: '' });
     }
   };
 
   const classes = useStyles();
 
+  /*
+    Estructura del componente, el cual contiene un formulario con el textfield del 
+    titulo del proyecto, así como el botón que manda a hacer la creación del proyecto.
+  */
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
       <TextField

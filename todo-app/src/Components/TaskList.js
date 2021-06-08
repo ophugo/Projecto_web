@@ -2,6 +2,7 @@ import React from 'react';
 import Task from './Task';
 import { makeStyles } from '@material-ui/core/styles';
 
+//Estilos (Css) del componente
 export const useStyles = makeStyles((theme) => ({
   list: {
     display: 'flex',
@@ -14,6 +15,7 @@ export const useStyles = makeStyles((theme) => ({
 const TaskList = ({ tasks, toggleComplete, removeTask, editTaskTitle, editTaskDate }) => {
   const classes = useStyles();
 
+  // Lista de todas las tareas, mediante un mapeo, se le pasan los aprametros necesarios
   return (
     <div className={classes.list}>
       {tasks.map((task) => (

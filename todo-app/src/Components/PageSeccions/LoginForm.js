@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+//Estilos (Css) del componente
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
@@ -87,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MainInfo = () => {
+  //Manejo de variables correspondientes a los datos del usuario
   const [error, setError] = useState({ bool: false, type: "" });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -98,6 +100,7 @@ const MainInfo = () => {
   const [isLogin, setLogin] = useState(true);
   let history = useHistory();
 
+  //Función encargada de la inicialización del componente
   useEffect(() => {
     if (token["mytoken"] !== "undefined") {
       if (token["mytoken"]) {
@@ -115,6 +118,7 @@ const MainInfo = () => {
     }
   }, [token]);
 
+  //Manejo del login del usuario mediante web service
   const loginBtn = (event) => {
     event.preventDefault();
     ApiService.loginUser({ username, password }).then((resp) => {
@@ -122,6 +126,7 @@ const MainInfo = () => {
     });
   };
 
+  //Funcón que checa si las contraseñas primera y de confirmación son iguales
   const checkPasswordBoolean = () => {
     if (password !== confirmPassword) {
       return (
@@ -132,6 +137,7 @@ const MainInfo = () => {
     }
   };
 
+  //Manejo de visualización de mensajes de error/éxito
   const checkError = () => {
     if (error.bool) {
       return <p style={{ color: "red", fontSize: 12 }}>{error.type}</p>;
@@ -140,6 +146,8 @@ const MainInfo = () => {
     }
   };
 
+
+  //Función con web service para la creación del usuario
   const registerBtn = (event) => {
     // perform all neccassary validations
     ApiService.registerUser({
@@ -157,7 +165,6 @@ const MainInfo = () => {
         last_name &&
         email
       ) {
-        // alert("Cuenta creada exitosamente");
         setPassword("");
         setLogin(true);
         setError({ bool: false, type: "Cuenta creada exitosamente" });
@@ -177,6 +184,8 @@ const MainInfo = () => {
 
   const classes = useStyles();
 
+
+  //Estructura del login y signup de la aplicación, contiene un formulario para cada uno
   return (
     <div className={classes.root}>
       <Grid
@@ -186,7 +195,6 @@ const MainInfo = () => {
         direction="row"
         alignItems="center"
         justify="center"
-        // style={{ background: "linear-gradient(to left, #af69cd, #4a148c)" }}
       >
         <Grid className={classes.grid} data-aos="fade-up" item xs={12} lg={6}>
           {isLogin ? (

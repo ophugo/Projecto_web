@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { Fragment } from 'react';
 import APIService from "../APIService";
 
+//Estilos (Css) del componente
 export const useStyles = makeStyles((theme) => ({
   buttons: {
     margin:0,
@@ -56,30 +57,40 @@ export const useStyles = makeStyles((theme) => ({
 const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate }) => {
   const [isEditing, setEditing] = useState(false);
 
+  //Función que manda a llamar las funciones correspondientes al manejo del completado de tarea
   const handleCheckboxClick = () => {
     toggleComplete(task);
-    
   };
 
+  //Función que manda a llamar las funciones correspondientes a la eliminación de tarea
   const handleRemoveTask = () => {
     removeTask(task.id);
     deleteTareas(task.id);
   };
 
-  const handleEditTitleTask = (e) => {
-    editTaskTitle(task, e.target.value);
-  };
-
-  const handleEditDateTask = (e) => {
-    editTaskDate(task, e.target.value);
-  };
-
+  //Función que manda a llamar el web service para la eliminación de la tarea
   const deleteTareas = (id) => {
     APIService.deleteSubProjects(id);
   };
 
+  //Función que manda a llamar la funcion correspondiente a la edición del título de tarea
+  const handleEditTitleTask = (e) => {
+    editTaskTitle(task, e.target.value);
+  };
+
+  //Función que manda a llamar la funcion correspondiente a la edición de la fecha de tarea
+  const handleEditDateTask = (e) => {
+    editTaskDate(task, e.target.value);
+  };
+
+
   const classes = useStyles();
 
+  /*
+    Estructura del componente tarea, en este componente de igual forma se realiza la edición del mismo,
+    por lo cual, se optó a tener texfield editables, los cuales al ser cambiados, mandarán a llamar el web service
+    correspondiente que de igual forma actualizará su valor en la base de datos.
+  */
   return (
     <div
       style={{
@@ -106,59 +117,48 @@ const Task = ({ task, toggleComplete, removeTask, editTaskTitle, editTaskDate })
           <DeleteIcon />
         </IconButton>
       </Grid>
-      
       <form className={classes.form} onSubmit={null}>
-      <TextField
-        id="task-title"
-        name="title"
-        type="text"
-        label="Task title"
-        autoComplete="off"
-        autoCorrect="off"
-        autoCapitalize="on"
-        multiline
-        rowsMax="4"
-        defaultValue="Task title"
-        InputLabelProps={{ shrink: true, required: false, focused: true }}
-        InputProps={{
-          classes: {
-            root: classes.outline,
-          },
-        }}
-        inputProps={{ maxLength: 80 }}
-        value={task.title}
-        className={classes.textField}
-        onChange={handleEditTitleTask}
-        required
-      />
-      {/* <input value={task.title} onChange={handleEditTitleTask} className="Task-Title"/> */}
-
-
-      {task.date && 
-          <TextField
-            id="task-date"
-            label="Completion date"
-            type="date"
-            value={task.date}
-            onChange={handleEditDateTask}
-            className={classes.dateField}
-            InputLabelProps={{ shrink: true, focused: true }}
-            InputProps={{
-              classes: {
-                root: classes.outline,
-              },
-            }}
-            noValidate
-          />
-      }
-      </form>
-      {/* <p className="Task-Date">{task.date}</p> */}
-
-      {/* <Button variant="outlined" color="primary" onClick={handleEditTask}> Edit Task </Button> */}
-      {/*<Button variant="outlined" color="primary" onClick={handleRemoveTask}>
-        Remove Task
-      </Button>*/}
-      
+        <TextField
+          id="task-title"
+          name="title"
+          type="text"
+          label="Task title"
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="on"
+          multiline
+          rowsMax="4"
+          defaultValue="Task title"
+          InputLabelProps={{ shrink: true, required: false, focused: true }}
+          InputProps={{
+            classes: {
+              root: classes.outline,
+            },
+          }}
+          inputProps={{ maxLength: 80 }}
+          value={task.title}
+          className={classes.textField}
+          onChange={handleEditTitleTask}
+          required
+        />
+        {task.date && 
+            <TextField
+              id="task-date"
+              label="Completion date"
+              type="date"
+              value={task.date}
+              onChange={handleEditDateTask}
+              className={classes.dateField}
+              InputLabelProps={{ shrink: true, focused: true }}
+              InputProps={{
+                classes: {
+                  root: classes.outline,
+                },
+              }}
+              noValidate
+            />
+        }
+      </form>    
     </div>
   );
 };
