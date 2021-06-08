@@ -17,7 +17,7 @@ Abra [http://localhost:3000](http://localhost:3000) vara visualizarlo en el nave
 
 
 ###### `npm run build`
-Este comando contruira la applicació para produccón.
+Este comando contruira la applicació para producción.
 
 
 ### Y listo, la aplicación esta lista para ser deployeada.
