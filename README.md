@@ -16,8 +16,4 @@ Este comando correrá la applicación en modo development.\
 Abra [http://localhost:3000](http://localhost:3000) vara visualizarlo en el navegador.
 
 
-###### `npm run build`
-Este comando contruira la applicació para producción.
-
-
-### Y listo, la aplicación esta lista para ser deployeada.
+### No es necesario instalar el backend, ya que incluso el frontend local tiene los urls del api que esta en la web.!!
