@@ -12,10 +12,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     alignContent: "center",
     overflow: "hidden",
-    background: "linear-gradient(to left, #af69cd, #4a148c)",
-    backgroundBlendMode: "luminosity",
     fontFamily: "'Montserrat', sans-serif",
     lineHeight: 1.5,
+    
   },
   login: {
     display: "block",
@@ -35,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     padding: 100,
     backgroundColor: "white",
+
+    background: 'white',
+    background: 'linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))',
+    borderRadius: 30,
+    backdropFilter: 'blur(2rem)',
+    boxShadow: '6px 6px 20px rgba(122,122,122,0.212)',
   },
   grid: {
     display: "block",
@@ -181,7 +186,7 @@ const MainInfo = () => {
         direction="row"
         alignItems="center"
         justify="center"
-        style={{ background: "linear-gradient(to left, #af69cd, #4a148c)" }}
+        // style={{ background: "linear-gradient(to left, #af69cd, #4a148c)" }}
       >
         <Grid className={classes.grid} data-aos="fade-up" item xs={12} lg={6}>
           {isLogin ? (

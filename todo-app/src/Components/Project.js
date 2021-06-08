@@ -23,7 +23,6 @@ export const useStyles = makeStyles((theme) => ({
     background: theme.palette.primary.main,
   },
   project: {
-    // border: '1px solid #c7ecec',
     marginTop: 60,
     padding: 20,
     background: 'transparent',

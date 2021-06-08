@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import ProjectForm from "./ProjectForm";
 import ProjectList from "./ProjectList";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Grid } from "@material-ui/core";
+import { Box, Button, Grid } from "@material-ui/core";
 import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
 import ApiService from "../APIService";
 import APIService from "../APIService";
+import { Fragment } from "react";
 
 export const useStyles = makeStyles((theme) => ({
   home: {
@@ -18,6 +19,7 @@ export const useStyles = makeStyles((theme) => ({
     minHeight: '80vh',
     background: 'linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))',
     margin: '10vh',
+    marginTop: '5vh',
     borderRadius: 30,
     backdropFilter: 'blur(2rem)',
     boxShadow: '6px 6px 20px rgba(122,122,122,0.212)',
@@ -27,6 +29,12 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       width: '40vh',
     },
+  },
+  logout: {
+    marginTop: 30,
+    borderRadius: 15,
+    background: 'linear-gradient(to right top, rgba(114, 246, 255, 0.829), rgba(92, 195, 255, 0.822))',
+    boxShadow: '6px 6px 30px rgba(122,122,122,0.212)',
   },
 }));
 
@@ -58,10 +66,6 @@ const Home = () => {
     setID(id);
   };
 
-  const deleteTareas = (id) => {
-    APIService.deleteSubProjects(id);
-  };
-
   useEffect(() => {
     if (token["mytoken"] !== "undefined") {
       if (token["mytoken"]) {
@@ -91,8 +95,8 @@ const Home = () => {
   const classes = useStyles();
 
   return (
-
-    // <div>
+    <Fragment>
+      <Button className={classes.logout} onClick={() => removeToken(["mytoken"])}>Logout</Button>
       <Grid item xs={12} container alignItems="center" className={classes.home}>
         <Box fontSize={50} color="text.secondary" fontWeight={200} style={{marginBottom: 30}}>
           Projects
@@ -100,6 +104,7 @@ const Home = () => {
         <ProjectForm addProject={addProject} />
         <ProjectList projects={projects} removeProject={removeProject} />
       </Grid>
+    </Fragment>
 
     //   <div className={classes.home}>
     //     <button onClick={() => removeToken(["mytoken"])}>Logout</button>
