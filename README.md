@@ -19,7 +19,7 @@ Abra [http://localhost:3000](http://localhost:3000) vara visualizarlo en el nave
 ### No es necesario instalar el backend, ya que incluso el frontend local tiene los urls del api que esta en la web.!!
 
 # Para hacer deployment siga los siguientes pasos
-# El primer paso es clonar el proyecto, luego ya estando adentro de la carpeta del proyecto se siguen los siguientes pasos
+### El primer paso es clonar el proyecto, luego ya estando adentro de la carpeta del proyecto se siguen los siguientes pasos
 ```
 git init
 heroku create -b https://github.com/mars/create-react-app-buildpack.git
